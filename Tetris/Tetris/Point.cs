@@ -8,25 +8,13 @@ namespace Tetris
     {
         public int x;
         public int y;
-        public char c;
+        public char sym;
 
-
-        public Point(int a, int b, char sym)
-        {
-            x = a;
-            y = b;
-            c = sym;
-        }
-
-        public Point()
-        {
-
-        }
 
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
-            Console.Write(c);
+            Console.Write(sym);
         }
     }
 }
