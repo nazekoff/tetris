@@ -10,6 +10,12 @@ namespace Tetris
         public int y;
         public char sym;
 
+        public Point(int a, int b, char c)
+        {
+            x = a;
+            y = b;
+            sym = c;
+        }
 
         public void Draw()
         {

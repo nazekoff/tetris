@@ -9,8 +9,8 @@ namespace Tetris
             Console.SetWindowSize(40, 30);
             Console.SetBufferSize(40, 30);
 
-            Figure square = new Figure(3, '*');
-            square.DrawSquare();
+            Square s = new Square(2, 3, '*');
+            s.DrawSquare();
 
 
             Console.ReadKey();
