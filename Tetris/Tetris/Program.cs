@@ -10,7 +10,11 @@ namespace Tetris
             Console.SetBufferSize(40, 30);
 
             Square s = new Square(2, 3, '*');
-            s.DrawSquare();
+            s.Draw();
+
+
+            Stick stick = new Stick(8, 8, '*');
+            stick.Draw();
 
 
             Console.ReadKey();
