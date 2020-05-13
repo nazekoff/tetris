@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Tetris
 {
@@ -18,10 +19,26 @@ namespace Tetris
                 fig.Draw();
             }
 
+            Thread.Sleep(500);
+            f[1].Hide();
+            f[1].Move(Direction.LEFT);
+            f[1].Draw();
+
+
+            Thread.Sleep(500);
+            f[1].Hide();
+            f[1].Move(Direction.DOWN);
+            f[1].Draw();
+
+
+            Thread.Sleep(500);
+            f[1].Hide();
+            f[1].Move(Direction.RIGHT);
+            f[1].Draw();
+
 
             Console.ReadKey();
         }
-
-        
+                
     }
 }
