@@ -10,31 +10,37 @@ namespace Tetris
             Console.SetWindowSize(40, 30);
             Console.SetBufferSize(40, 30);
 
-            Figure[] f = new Figure[2];
-            f[0] = new Stick(8, 8, '*');
-            f[1] = new Square(2, 3, '*');
+            Figure s = new Stick(20, 5, '*');
 
-            foreach (Figure fig in f)
-            {
-                fig.Draw();
-            }
+            s.Draw();
 
             Thread.Sleep(500);
-            f[1].Hide();
-            f[1].Move(Direction.LEFT);
-            f[1].Draw();
+            s.Hide();
+            s.Rotate();
+            s.Draw();
 
 
             Thread.Sleep(500);
-            f[1].Hide();
-            f[1].Move(Direction.DOWN);
-            f[1].Draw();
+            s.Hide();
+            s.Move(Direction.LEFT);
+            s.Draw();
 
 
             Thread.Sleep(500);
-            f[1].Hide();
-            f[1].Move(Direction.RIGHT);
-            f[1].Draw();
+            s.Hide();
+            s.Move(Direction.DOWN);
+            s.Draw();
+
+
+            Thread.Sleep(500);
+            s.Hide();
+            s.Move(Direction.RIGHT);
+            s.Draw();
+
+            Thread.Sleep(500);
+            s.Hide();
+            s.Rotate();
+            s.Draw();
 
 
             Console.ReadKey();
