@@ -10,15 +10,10 @@ namespace Tetris
             Console.SetWindowSize(40, 30);
             Console.SetBufferSize(40, 30);
 
-            //Figure s = new Stick(20, 5, '*');
-            Figure[] f = new Figure[2];
-            f[0] = new Stick(20, 5, '*');
-            f[1] = new Square(25, 7, '*');
+            FigureGenerator generator = new FigureGenerator(20, 0, '*');
+            Figure s = generator.GetNewFigure();
 
-            Random rand = new Random();
-            int val = rand.Next(0, 2);
-
-            f[val].Draw();
+            s.Draw();
 
             
             ////////////
