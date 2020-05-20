@@ -10,62 +10,33 @@ namespace Tetris
             Console.SetWindowSize(40, 30);
             Console.SetBufferSize(40, 30);
 
+            FigureGenerator generator = new FigureGenerator(20, 0, '*');
+            Figure s = null;
+
 
             while (true)
             {
-                FigureGenerator generator = new FigureGenerator(20, 0, '*');
-                Figure s = generator.GetNewFigure();
-
-                for (int i = 0; i < 20; i++)
-                {
-                    s.Draw();
-
-                    Thread.Sleep(200);
-                    s.Hide();
-                    s.Move(Direction.DOWN);
-                    s.Draw();
-                }
-                s.Hide();
-
+                FigureFall(s, generator);
+                //s.Draw();
             }
-
-
-            ////////////
-
-            //s.Draw();
-
-            //Thread.Sleep(500);
-            //s.Hide();
-            //s.Rotate();
-            //s.Draw();
-
-
-            //Thread.Sleep(500);
-            //s.Hide();
-            //s.Move(Direction.LEFT);
-            //s.Draw();
-
-
-            //Thread.Sleep(500);
-            //s.Hide();
-            //s.Move(Direction.DOWN);
-            //s.Draw();
-
-
-            //Thread.Sleep(500);
-            //s.Hide();
-            //s.Move(Direction.RIGHT);
-            //s.Draw();
-
-
-            //Thread.Sleep(500);
-            //s.Hide();
-            //s.Rotate();
-            //s.Draw();
-
-
-            //Console.ReadKey();
+            
         }
+
+
+        static void FigureFall(Figure fig, FigureGenerator generator)
+        {
+            fig = generator.GetNewFigure();
+            fig.Draw();
+
+            for (int i = 0; i < 20; i++)
+            {
+                Thread.Sleep(200);
+                fig.Hide();
+                fig.Move(Direction.DOWN);
+                fig.Draw();
+            }
+            fig.Hide();
+        } 
                 
     }
 }
