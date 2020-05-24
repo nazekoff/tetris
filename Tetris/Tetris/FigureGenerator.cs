@@ -17,12 +17,19 @@ namespace Tetris
             _c = c;
         }
 
-        public Figure GetNewFigure()
+        public Figure GetNewFigure(out bool boolFig)
         {
             if(_rand.Next(0, 2) == 0)
+            {
+                boolFig = false;
                 return new Square(_x, _y, _c);
+            }
+
             else
+            {
+                boolFig = true;
                 return new Stick(_x, _y, _c);
+            }
         }
     }
 }

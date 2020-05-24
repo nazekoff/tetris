@@ -6,6 +6,6 @@ namespace Tetris
 {
     enum Direction
     {
-       DOWN, LEFT, RIGHT
+       DOWN, LEFT, RIGHT, SPACEBAR
     }
 }

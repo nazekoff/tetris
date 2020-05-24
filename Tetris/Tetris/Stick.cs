@@ -16,33 +16,57 @@ namespace Tetris
             Draw();
         }
 
+
+        //public void TryMove()
+        //{
+        //    Hide();
+        //    var clone = Clone();
+
+        //    Rotate();
+
+        //}
+
+
+
         public override void Rotate()
         {
-            if(points[0].x == points[1].x)
+            Hide();
+            var clone = Clone();
+                        
+            if (clone[0].x == clone[1].x)
             {
-               RotateHorizontal();
+                RotateHorizontal(clone);
             }
             else
             {
-                RotateVertical();
+                RotateVertical(clone);
+            }
+
+
+            if (VerifyPosition(clone))
+            {
+                points = clone;
+            }
+
+            Draw();
+            Hide();
+        }
+
+        private void RotateVertical(Point[] clone)
+        {
+            for (int i = 0; i < clone.Length; i++)
+            {
+                clone[i].x = clone[0].x;
+                clone[i].y = clone[0].y + i;
             }
         }
 
-        private void RotateVertical()
+        private void RotateHorizontal(Point[] clone)
         {
-            for (int i = 0; i < points.Length; i++)
+            for (int i = 0; i < clone.Length; i++)
             {
-                points[i].x = points[0].x;
-                points[i].y = points[0].y + i;
-            }
-        }
-
-        private void RotateHorizontal()
-        {
-            for (int i = 0; i < points.Length; i++)
-            {
-                points[i].y = points[0].y; 
-                points[i].x = points[0].x + i;
+                clone[i].y = clone[0].y;
+                clone[i].x = clone[0].x + i;
             }
         }
 

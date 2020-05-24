@@ -7,38 +7,50 @@ namespace Tetris
     {
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
             Console.SetWindowSize(40, 30);
             Console.SetBufferSize(40, 30);
 
+            bool boolFig;
+
             FigureGenerator generator = new FigureGenerator(20, 0, '*');
-            Figure currentFigure = generator.GetNewFigure();
+            Figure currentFigure = generator.GetNewFigure(out boolFig);
 
             
             while (true)
             {
+
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
-                    HandleKey(currentFigure, key);
-                }                                                
+                    HandleKey(currentFigure, key, boolFig);
+                }
+
             }
 
         }
 
-        private static void HandleKey(Figure currentFigure, ConsoleKeyInfo key)
+        private static void HandleKey(Figure currentFigure, ConsoleKeyInfo key, bool boolFig)
         {
+            
             switch (key.Key)
             {
                 case ConsoleKey.LeftArrow:
-                    currentFigure.Move(Direction.LEFT);
+                    currentFigure.TryMove(Direction.LEFT);
                     break;
                 case ConsoleKey.RightArrow:
-                    currentFigure.Move(Direction.RIGHT);
+                    currentFigure.TryMove(Direction.RIGHT);
                     break;
                 case ConsoleKey.DownArrow:
-                    currentFigure.Move(Direction.DOWN);
+                    currentFigure.TryMove(Direction.DOWN);
+                    break;
+                case ConsoleKey.Spacebar:
+                    if(boolFig == true)
+                        currentFigure.Rotate();
                     break;
             }
         }
+
+        
     }
 }
