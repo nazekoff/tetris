@@ -17,7 +17,7 @@ namespace Tetris
                 p.Draw();
             }
         }
-                
+          
         
 
 
@@ -61,7 +61,7 @@ namespace Tetris
         {
             foreach (var p in pList)
             {
-                if (p.x < 0 || p.y < 0 || p.x >= Field.WIDTH || p.y >= Field.HEIGHT)
+                if (p.X < 0 || p.Y < 0 || p.X >= Field.Width || p.Y >= Field.Height)
                     return false;
             }
 
@@ -89,10 +89,6 @@ namespace Tetris
         }
 
 
-        
-
-
-
 
         //public void Move(Direction dir)
         //{
@@ -103,8 +99,6 @@ namespace Tetris
         //    }
         //    Draw();
         //}
-
-
 
 
         public void Hide()
