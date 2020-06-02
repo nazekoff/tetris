@@ -8,11 +8,11 @@ namespace Tetris
     {
         const int LENGTH = 4;
 
-        protected Point[] points = new Point[LENGTH];
+        public Point[] Points = new Point[LENGTH];
 
         public void Draw()
         {
-            foreach (Point p in points)
+            foreach (Point p in Points)
             {
                 p.Draw();
             }
@@ -21,52 +21,66 @@ namespace Tetris
         
 
 
-        internal void TryRotate()
+        internal Result TryRotate()
         {
             Hide();
 
             var clone = Clone();
             Rotate(clone);
 
-            if (VerifyPosition(clone))
+            var result = VerifyPosition(clone);
+
+            if (result == Result.SUCCESS)
             {
-                points = clone;
+                Points = clone;
             }
 
             Draw();
+
+            return result;
         }
 
 
         public abstract void Rotate(Point[] pList);
 
 
-        internal void TryMove(Direction dir)
+        internal Result TryMove(Direction dir)
         {
             Hide(); 
             var clone = Clone();
             Move(clone, dir);
 
-            if (VerifyPosition(clone))
+            var result = VerifyPosition(clone);
+
+            if (result == Result.SUCCESS)
             {
-                points = clone;
+                Points = clone;
             }
 
             Draw();
+
+            return result;
         }
 
 
 
-
-        public bool VerifyPosition(Point[] pList)
+        private Result VerifyPosition(Point[] newPoints)
         {
-            foreach (var p in pList)
+            foreach (var p in newPoints)
             {
-                if (p.X < 0 || p.Y < 0 || p.X >= Field.Width || p.Y >= Field.Height)
-                    return false;
-            }
+                if (p.Y >= Field.Height)
+                    return Result.DOWN_BORDER_STRIKE;
 
-            return true;
+                if (p.X >= Field.Width || p.X < 0 || p.Y < 0)
+                    return Result.BORDER_STRIKE;
+
+                if (Field.CheckStrike(p))
+                    return Result.HEAP_STRIKE;
+            }
+            return Result.SUCCESS;
         }
+
+
 
         public void Move(Point[] pList, Direction dir)
         {
@@ -82,28 +96,18 @@ namespace Tetris
 
             for (int i = 0; i < LENGTH; i++)
             {
-                newPoints[i] = new Point(points[i]);
+                newPoints[i] = new Point(Points[i]);
             }
 
             return newPoints;
         }
 
 
-
-        //public void Move(Direction dir)
-        //{
-        //    Hide();
-        //    foreach (Point p in points)
-        //    {
-        //        p.Move(dir);
-        //    }
-        //    Draw();
-        //}
-
+        
 
         public void Hide()
         {
-            foreach (Point p in points)
+            foreach (Point p in Points)
             {
                 p.Hide();
             }
