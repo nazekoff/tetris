@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace Tetris
 {
     static class Field
     {
-        private static int _width = 40;
-        private static int _height = 30;
+        private static int _width = 30;
+        private static int _height = 20;
 
         public static int Width
         {
@@ -53,6 +55,51 @@ namespace Tetris
             }
         }
 
+        internal static void DeleteLine()
+        {
+            int[] count = new int[Height];
+            for (int i = 0; i < count.Length; i++)
+            {
+                count[i] = 0;
+            }
+
+
+            for (int i = 0; i < _heap.Length; i++)
+            {
+                for (int j = 0; j < _heap[i].Length; j++)
+                {
+                    if(_heap[i][j] == true )
+                    {
+                        count[i]++;
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < count.Length; i++)
+            {
+                if (count[i] < Field.Width)
+                {
+                    count[i] = 0;
+                }
+            }
+
+           
+
+            for (int i = 0; i < _heap.Length; i++)
+            {
+                for (int j = 0; j < _heap[i].Length; j++)
+                {
+                    if (_heap[i][j] == true && count[i] == Field.Width)
+                    {
+                        Console.SetCursorPosition(i, j);
+                        Console.WriteLine("#");
+                    }
+                }
+            }
+
+
+        }
 
         public static bool CheckStrike(Point p)
         {

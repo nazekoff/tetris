@@ -29,7 +29,6 @@ namespace Tetris
                 RotateVertical(pList);
             }
             
-            //Draw();
         }
 
         private void RotateVertical(Point[] pList)

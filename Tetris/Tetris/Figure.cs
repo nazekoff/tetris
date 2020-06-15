@@ -17,9 +17,7 @@ namespace Tetris
                 p.Draw();
             }
         }
-          
         
-
 
         internal Result TryRotate()
         {
@@ -46,7 +44,7 @@ namespace Tetris
 
         internal Result TryMove(Direction dir)
         {
-            Hide(); 
+            Hide();
             var clone = Clone();
             Move(clone, dir);
 
@@ -90,6 +88,8 @@ namespace Tetris
             }
         }
 
+
+
         public Point[] Clone()
         {
             var newPoints = new Point[LENGTH];
@@ -101,9 +101,7 @@ namespace Tetris
 
             return newPoints;
         }
-
-
-        
+ 
 
         public void Hide()
         {

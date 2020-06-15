@@ -12,19 +12,18 @@ namespace Tetris
             Console.CursorVisible = false;
             Console.SetWindowSize(Field.Width, Field.Height);
             Console.SetBufferSize(Field.Width, Field.Height);
-                
-            
+
             generator = new FigureGenerator(20, 0, '*');
             Figure currentFigure = generator.GetNewFigure();
-            
-            
+
             while (true)
             {
 
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
-                    var result = HandleKey(currentFigure, key.Key);
+                    Result result = HandleKey(currentFigure, key.Key);
+
                     ProcessResult(result, ref currentFigure);
                 }
 
@@ -38,6 +37,7 @@ namespace Tetris
             if(result == Result.HEAP_STRIKE || result == Result.DOWN_BORDER_STRIKE)
             {
                 Field.AddFigure(currentFigure);
+                Field.DeleteLine();
                 currentFigure = generator.GetNewFigure();
                 return true;
             }
@@ -46,6 +46,7 @@ namespace Tetris
                 return false;
             }
         }
+        
 
         private static Result HandleKey(Figure f, ConsoleKey key)
         {

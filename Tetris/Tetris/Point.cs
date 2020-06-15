@@ -29,7 +29,6 @@ namespace Tetris
         {
             Console.SetCursorPosition(X, Y);
             Console.Write(SYM);
-            //Console.SetCursorPosition(0, 0);
         }
 
         internal void Move(Direction dir)
