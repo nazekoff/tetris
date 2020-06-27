@@ -12,15 +12,12 @@ namespace Tetris
         {
             Console.SetCursorPosition(x, y);
             Console.Write(c);
-            //Console.SetCursorPosition(0, 0);
         }
 
         public static void HidePoint(int x, int y)
         {
             Console.SetCursorPosition(x, y);
             Console.Write(' ');
-            //Console.SetCursorPosition(0, 0);
-
         }
     }
 }

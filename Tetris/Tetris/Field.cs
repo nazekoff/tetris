@@ -65,14 +65,16 @@ namespace Tetris
                 {
                     if (_heap[j][i])
                         counter++;
-                    if(counter == Width)
+                    if (counter == Width)
                     {
                         DeleteLine(j);
                         ReDraw();
                     }
                 }
             }
+
         }
+
 
         private static void ReDraw()
         {
@@ -87,6 +89,7 @@ namespace Tetris
                 }
             }
         }
+
 
         private static void DeleteLine(int line)
         {
